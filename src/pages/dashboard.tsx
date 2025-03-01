@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import supabase from "@/lib/supabase/supabase";
 import { User } from "@supabase/supabase-js";
+import { Button } from "@chakra-ui/react/button";
 
 export default function Dashboard() {
 	const router = useRouter();
@@ -41,7 +42,7 @@ export default function Dashboard() {
 		<div>
 			<h1>Dashboard</h1>
 			{user ? <p>Zalogowany jako: {user.email}</p> : <p>Nie zalogowany</p>}
-			<button onClick={handleLogout}>Wyloguj</button>
+			<Button onClick={handleLogout}>Wyloguj</Button>
 		</div>
 	);
 }
