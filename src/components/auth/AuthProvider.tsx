@@ -1,5 +1,3 @@
-"use client"; // Jeśli Next.js (Pages Router nie wymaga)
-
 import { useAuthStore } from "@/store/authStore";
 import { ReactNode, useEffect } from "react";
 
@@ -8,7 +6,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 	useEffect(() => {
 		fetchUser();
-	}, [fetchUser]);
+	}, []);
 
 	return <>{children}</>;
 };
