@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import supabase from "@/lib/supabase";
+import supabase from "@/lib/supabase/supabase";
 import { User } from "@supabase/supabase-js";
 
 export default function Dashboard() {
