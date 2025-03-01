@@ -1,8 +1,3 @@
-
 export default function Home() {
-	return (
-		<div>
-			dupa index.Home
-		</div>
-	);
+	return <div>HOME Wszystkie oferty tutaj będą</div>;
 }
