@@ -1,5 +1,13 @@
 import { useAuthStore } from "@/store/authStore";
-import { Box, Flex, Button, Spacer, Text } from "@chakra-ui/react";
+import {
+	Box,
+	Flex,
+	Button,
+	Spacer,
+	Text,
+	Stack,
+	Separator,
+} from "@chakra-ui/react";
 import NextLink from "next/link";
 
 const Navbar = () => {
@@ -13,17 +21,17 @@ const Navbar = () => {
 				<NextLink href="/">AtuMoto</NextLink>
 				<Spacer />
 				<Box marginRight="10px">
-					{isLoggedIn ? (
-						<Text>Zalogowany jako: {userEmail}</Text>
-					) : (
-						<Text>Nie zalogowany</Text>
-					)}
+					{isLoggedIn && <Text>Zalogowany jako: {userEmail}</Text>}
 				</Box>
 
-				{isLoggedIn ? (
-					<Button onClick={logout}>Wyloguj</Button>
-				) : (
-					<NextLink href="/login">Zaloguj</NextLink>
+				{isLoggedIn && <Button onClick={logout}>Wyloguj</Button>}
+
+				{!isLoggedIn && (
+					<Stack alignItems="center" direction="row" gap={4}>
+						<NextLink href="/login">Zaloguj się</NextLink>
+						<Separator orientation="vertical" height="4" />
+						<NextLink href="/register">Zarejestruj się</NextLink>
+					</Stack>
 				)}
 			</Flex>
 		</Box>
