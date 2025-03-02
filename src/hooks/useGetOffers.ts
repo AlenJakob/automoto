@@ -10,6 +10,8 @@ type Offer = {
 	user_id: string;
 	created_at: string;
 	price: number;
+	offer_id: string;
+	negotiation: boolean;
 
 }
 
