@@ -18,13 +18,22 @@ const Navbar = () => {
 	return (
 		<Box bg="gray.400" p={2} color="white">
 			<Flex maxW="1200px" mx="auto" align="center">
-				<NextLink href="/">AtuMoto</NextLink>
+				<NextLink color="red" href="/">
+					AtuMoto
+				</NextLink>
 				<Spacer />
 				<Box marginRight="10px">
 					{isLoggedIn && <Text>Zalogowany jako: {userEmail}</Text>}
 				</Box>
 
-				{isLoggedIn && <Button onClick={logout}>Wyloguj</Button>}
+				<Stack direction="row" gap={2}>
+					{isLoggedIn && <Button onClick={logout}>Wyloguj</Button>}
+					{isLoggedIn && (
+						<Button>
+							<NextLink href="/account">Moje Konto</NextLink>
+						</Button>
+					)}
+				</Stack>
 
 				{!isLoggedIn && (
 					<Stack alignItems="center" direction="row" gap={2}>
