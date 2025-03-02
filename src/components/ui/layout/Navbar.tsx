@@ -16,7 +16,7 @@ const Navbar = () => {
 	const isLoggedIn = !!userEmail;
 
 	return (
-		<Box bg="gray.400" p={4} color="white">
+		<Box bg="gray.400" p={2} color="white">
 			<Flex maxW="1200px" mx="auto" align="center">
 				<NextLink href="/">AtuMoto</NextLink>
 				<Spacer />
@@ -27,7 +27,7 @@ const Navbar = () => {
 				{isLoggedIn && <Button onClick={logout}>Wyloguj</Button>}
 
 				{!isLoggedIn && (
-					<Stack alignItems="center" direction="row" gap={4}>
+					<Stack alignItems="center" direction="row" gap={2}>
 						<NextLink href="/login">Zaloguj się</NextLink>
 						<Separator orientation="vertical" height="4" />
 						<NextLink href="/register">Zarejestruj się</NextLink>
