@@ -1,10 +1,11 @@
-import { Box, Button, Input, VStack, Text } from "@chakra-ui/react";
+import { Button, Input, VStack, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import supabase from "@/lib/supabase/supabase";
 import { toaster } from "@/components/ui/toaster";
 import { Field } from "@/components/ui/field";
+import AuthWrapper from "@/components/common/AuthWrapper";
 
 type LoginForm = {
 	email: string;
@@ -54,15 +55,7 @@ const Login = () => {
 	};
 
 	return (
-		<Box
-			w="100%"
-			maxW="400px"
-			mx="auto"
-			mt={10}
-			p={5}
-			borderWidth={1}
-			borderRadius="lg"
-		>
+		<AuthWrapper>
 			<Text fontSize="xl" fontWeight="bold" textAlign="center" mb={4}>
 				Logowanie
 			</Text>
@@ -110,7 +103,7 @@ const Login = () => {
 					</Button>
 				</VStack>
 			</form>
-		</Box>
+		</AuthWrapper>
 	);
 };
 
