@@ -35,28 +35,35 @@ const OfferCard = ({ offer }: OfferCard) => {
 	};
 
 	return (
-		<Card.Root key={offer.title}>
+		<Card.Root width="100%" key={offer.title}>
 			<Card.Body gap="2" flexDirection="row">
-				<Box display="flex" flexDirection="row" gap="2">
+				<Box
+					display="flex"
+					flexDirection={{ base: "column", md: "row" }}
+					gap="2"
+				>
 					<figure>
 						<Image
-							width={200}
+							width={250}
 							height={150}
 							src={`https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImV5cTRicHlydmhkYzItT1RPTU9UT1BMIiwidyI6W3siZm4iOiJ3ZzRnbnFwNnkxZi1PVE9NT1RPUEwiLCJzIjoiMTYiLCJhIjoiMCIsInAiOiIxMCwtMTAifV19.l82eFppVOpKG23nhwbtcX8EayDDks1QqQR75pdjG2hs/image;s=1440x0;q=80`}
 							alt={offer.title}
 							style={{
-								width: "200px",
-								height: "150px",
-								objectFit: "cover",
+								objectFit: "contain",
 							}}
 							unoptimized
 						/>
 					</figure>
-					<Box ml="4">
+					<Box ml={{ base: 0, md: 4 }}>
 						<Card.Title>{offer.title}</Card.Title>
 						<Card.Description>{offer.description}</Card.Description>
 
-						<HStack mt="4">
+						<HStack
+							mt="4"
+							flexDirection={{ base: "column", md: "row" }}
+							alignItems={{ base: "flex-start", md: "center" }}
+							gap="2"
+						>
 							<Badge colorPalette="blue">144, 000 km - mock</Badge>
 							<Badge colorPalette="blue">Automatyczna - mock</Badge>
 							<Badge colorPalette="blue">Benzyna - mock</Badge>
