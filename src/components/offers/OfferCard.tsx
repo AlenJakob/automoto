@@ -35,75 +35,77 @@ const OfferCard = ({ offer }: OfferCard) => {
 	};
 
 	return (
-		<Card.Root width="100%" key={offer.title}>
-			<Card.Body gap="2" flexDirection="row">
-				<Box
-					display="flex"
-					flexDirection={{ base: "column", md: "row" }}
-					gap="2"
-				>
-					<figure>
-						<Image
-							width={250}
-							height={150}
-							src={`https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImV5cTRicHlydmhkYzItT1RPTU9UT1BMIiwidyI6W3siZm4iOiJ3ZzRnbnFwNnkxZi1PVE9NT1RPUEwiLCJzIjoiMTYiLCJhIjoiMCIsInAiOiIxMCwtMTAifV19.l82eFppVOpKG23nhwbtcX8EayDDks1QqQR75pdjG2hs/image;s=1440x0;q=80`}
-							alt={offer.title}
-							style={{
-								objectFit: "contain",
-							}}
-							unoptimized
-						/>
-					</figure>
-					<Box ml={{ base: 0, md: 4 }}>
-						<Card.Title>{offer.title}</Card.Title>
-						<Card.Description>{offer.description}</Card.Description>
+		<Link href={`/offer/${offer.offer_id}`}>
+			<Card.Root width="100%" key={offer.title}>
+				<Card.Body gap="2" flexDirection="row">
+					<Box
+						display="flex"
+						flexDirection={{ base: "column", md: "row" }}
+						gap="2"
+					>
+						<figure>
+							<Image
+								width={250}
+								height={150}
+								src={`https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImV5cTRicHlydmhkYzItT1RPTU9UT1BMIiwidyI6W3siZm4iOiJ3ZzRnbnFwNnkxZi1PVE9NT1RPUEwiLCJzIjoiMTYiLCJhIjoiMCIsInAiOiIxMCwtMTAifV19.l82eFppVOpKG23nhwbtcX8EayDDks1QqQR75pdjG2hs/image;s=1440x0;q=80`}
+								alt={offer.title}
+								style={{
+									objectFit: "contain",
+								}}
+								unoptimized
+							/>
+						</figure>
+						<Box ml={{ base: 0, md: 4 }}>
+							<Card.Title>{offer.title}</Card.Title>
+							<Card.Description>{offer.description}</Card.Description>
 
-						<HStack
-							mt="4"
-							flexDirection={{ base: "column", md: "row" }}
-							alignItems={{ base: "flex-start", md: "center" }}
-							gap="2"
-						>
-							<Badge colorPalette="blue">144, 000 km - mock</Badge>
-							<Badge colorPalette="blue">Automatyczna - mock</Badge>
-							<Badge colorPalette="blue">Benzyna - mock</Badge>
-							<Badge colorPalette="blue">2014 - mock</Badge>
-						</HStack>
+							<HStack
+								mt="4"
+								flexDirection={{ base: "column", md: "row" }}
+								alignItems={{ base: "flex-start", md: "center" }}
+								gap="2"
+							>
+								<Badge colorPalette="blue">144, 000 km - mock</Badge>
+								<Badge colorPalette="blue">Automatyczna - mock</Badge>
+								<Badge colorPalette="blue">Benzyna - mock</Badge>
+								<Badge colorPalette="blue">2014 - mock</Badge>
+							</HStack>
 
-						<Box display="flex" flexDirection="column" mt="4" gap={1}>
-							<Text textStyle="sm">Poznań - mock</Text>
-							<Text textStyle="sm">dodano: {offerDate}</Text>
+							<Box display="flex" flexDirection="column" mt="4" gap={1}>
+								<Text textStyle="sm">Poznań - mock</Text>
+								<Text textStyle="sm">dodano: {offerDate}</Text>
+							</Box>
 						</Box>
+						{/* <p>Id oferty {offer.offer_id} </p> */}
 					</Box>
-					{/* <p>Id oferty {offer.offer_id} </p> */}
-				</Box>
-				<Box flex="1" justifyItems="flex-end">
-					<>
-						{offer.price && (
-							<Text textStyle="xl">
-								<b>{offer.price}</b> PLN
-							</Text>
-						)}
+					<Box flex="1" justifyItems="flex-end">
+						<>
+							{offer.price && (
+								<Text textStyle="xl">
+									<b>{offer.price}</b> PLN
+								</Text>
+							)}
 
-						{offer.negotiation && (
-							<Text color="green.600" textStyle="xs" fontWeight="bold">
-								Do negocjacji
-							</Text>
-						)}
-					</>
-					{!offer.price && <Text>Cena do uzgodnienia</Text>}
-				</Box>
-			</Card.Body>
+							{offer.negotiation && (
+								<Text color="green.600" textStyle="xs" fontWeight="bold">
+									Do negocjacji
+								</Text>
+							)}
+						</>
+						{!offer.price && <Text>Cena do uzgodnienia</Text>}
+					</Box>
+				</Card.Body>
 
-			<Card.Footer justifyContent="flex-end">
-				<IconButton variant="outline" onClick={handleFavoriteToggle}>
-					{isFavorited ? <HiHeart /> : <HiOutlineHeart />}
-				</IconButton>
-				<Link href={`/offer/${offer.offer_id}`}>
-					<Button>Zobacz ofertę</Button>
-				</Link>
-			</Card.Footer>
-		</Card.Root>
+				<Card.Footer justifyContent="flex-end">
+					<IconButton variant="outline" onClick={handleFavoriteToggle}>
+						{isFavorited ? <HiHeart /> : <HiOutlineHeart />}
+					</IconButton>
+					<Link href={`/offer/${offer.offer_id}`}>
+						<Button>Zobacz ofertę</Button>
+					</Link>
+				</Card.Footer>
+			</Card.Root>
+		</Link>
 	);
 };
 
