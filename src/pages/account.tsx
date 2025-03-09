@@ -7,6 +7,13 @@ import { toaster } from "@/components/ui/toaster";
 import { Field } from "@/components/ui/field";
 import AuthWrapper from "@/components/common/AuthWrapper";
 
+type FormValues = {
+	title: string;
+	description: string;
+	price: number;
+	negotiation: boolean;
+};
+
 const Account = () => {
 	const {
 		register,
@@ -21,7 +28,7 @@ const Account = () => {
 		},
 	});
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: FormValues) => {
 		const { error } = await supabase.from("offers").insert([
 			{
 				title: data.title,
