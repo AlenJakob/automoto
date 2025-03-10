@@ -100,9 +100,7 @@ const OfferCard = ({ offer }: OfferCard) => {
 					<IconButton variant="outline" onClick={handleFavoriteToggle}>
 						{isFavorited ? <HiHeart /> : <HiOutlineHeart />}
 					</IconButton>
-					<Link href={`/offer/${offer.offer_id}`}>
-						<Button>Zobacz ofertę</Button>
-					</Link>
+					<Button>Zobacz ofertę</Button>
 				</Card.Footer>
 			</Card.Root>
 		</Link>
