@@ -8,6 +8,8 @@ import supabase from "@/lib/supabase/supabase";
 import { toaster } from "@/components/ui/toaster";
 import { Field } from "@/components/ui/field";
 
+import Select from "react-select";
+
 import AuthWrapper from "@/components/common/AuthWrapper";
 
 const schema = z.object({
@@ -24,26 +26,31 @@ const schema = z.object({
 			return parsed;
 		}),
 	negotiation: z.boolean(),
-	// year: z.number().min(1980, "Rok produkcji musi być większy niż 1980"),
+	production_year: z
+		.number()
+		.min(1980, "Rok produkcji musi być większy niż 1980"),
 });
 
-// const currentYear = new Date().getFullYear();
+// const currentproduction_year = new Date().getFullproduction_year();
 
-// const years = [];
-// for (let year = 1980; year <= currentYear; year++) {
-// 	years.push(year);
+// const production_years = [];
+// for (let production_year = 1980; production_year <= currentproduction_year; production_year++) {
+// 	production_years.push(production_year);
 // }
 
-const years = Array.from({ length: 46 }, (_, i) => 1980 + i).reverse();
+const production_years = Array.from(
+	{ length: 46 },
+	(_, i) => 1980 + i
+).reverse();
 
-console.log(years);
+console.log(production_years);
 
 type FormValues = {
 	title: string;
 	description: string;
 	price: number;
 	negotiation: boolean;
-	// year: string;
+	production_year: number;
 };
 
 const Account = () => {
@@ -60,7 +67,7 @@ const Account = () => {
 			description: "lorem opisu",
 			price: 4900,
 			negotiation: true,
-			// year: 0,
+			production_year: 0,
 		},
 		resolver: zodResolver(schema),
 	});
@@ -72,7 +79,10 @@ const Account = () => {
 	}, [watcher]);
 
 	const onSubmit = async (data: FormValues) => {
-		debugger;
+		toaster.create({
+			description: "Oferta została dodana!",
+			type: "success",
+		});
 		try {
 			await supabase.from("offers").insert([
 				{
@@ -80,7 +90,7 @@ const Account = () => {
 					description: data.description,
 					price: Number(data.price),
 					negotiation: data.negotiation,
-					// year: data.year,
+					production_year: data.production_year,
 				},
 			]);
 			toaster.create({
@@ -164,6 +174,44 @@ const Account = () => {
 								</Field>
 							)}
 						/>
+
+						<Field
+							label="Rok produkcji"
+							invalid={!!errors.production_year}
+							errorText={errors.production_year?.message}
+							w="full"
+						>
+							<Controller
+								control={control}
+								name="production_year"
+								render={({ field }) => (
+									<Select
+										{...field}
+										closeMenuOnSelect={true}
+										styles={{
+											container: (base) => ({
+												...base,
+												width: "100%",
+											}),
+										}}
+										options={production_years.map((production_year) => ({
+											label: production_year.toString(),
+											value: production_year,
+										}))}
+										value={
+											field.value
+												? { label: field.value.toString(), value: field.value }
+												: null
+										}
+										onChange={(selectedOption) => {
+											field.onChange(
+												selectedOption ? selectedOption.value : null
+											);
+										}}
+									/>
+								)}
+							/>
+						</Field>
 					</Box>
 
 					<Button
